@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="../css/seev.css">
+    <link href='http://fonts.googleapis.com/css?family=Biryani' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    
+    <header><h1>SEEV</h1></header>
+    <div class="SignIn">
+       
+        <ul>
+            <li><h2>Sign in</h2></li>
+            <li><input name="email" type="text" placeholder="Email"></li>
+            <li><input name="password" type="password" placeholder="Password"></li>
+            <li><button name="login">LOG IN</button></li>
+        </ul>
+        <hr />
+        <p>Or connect using</p>
+        <ul class="altsign">
+            <li>
+                <a href="/auth/facebook"><img class="icon" name="facebook" src="../images/facebook.png"></a>
+            </li>
+            <li>
+                <a href="/auth/google"><img class="icon" name="google" src="../images/google-plus.png"></a>
+            </li>
+            <li>
+                <a href="/auth/linkedin"><img class="icon" name="linkedin" src="../images/linkedin.png"></a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="SignIn">
+        <form action="/auth/local/register" method="post">
+            <ul>
+                <li><h2>Register</h2></li>
+                <li><input name="name" type="text" placeholder="Name" required></li>
+                <li><input name="email" type="email" placeholder="Email" required></li>
+                <li><input name="password" type="password" placeholder="Password" required></li>
+                <li><button name="signup">Sign me up</button></li>
+            </ul>
+        </form>
+    </div>
+    
+    <footer></footer>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "dbURL": "mongodb://seevUser:seevTest951@ds047571.mongolab.com:47571/seev",
+  "sessionSecret": "JKASDJJSN0D4MJ398DF78978DSFGHFNL3345JK34KSDFG8",
+  "fb":{
+    "appId":"809506342459962",
+    "appSecret":"be3e31e6fea34411ce5acdd9b4ee1112",
+    "callbackURL":"https://seev-adamtibballs.c9.io/auth/facebook/callback"
+  }, 
+  "googleAuth" : {
+        "clientID"      : "929571317509-7rqn2hat5nn1vpddu1rmpn158vjte4ne.apps.googleusercontent.com",
+        "clientSecret"  : "_nKyzM2klpHLh4yKY5-btWe8",
+        "callbackURL"   : "https://seev-adamtibballs.c9.io/auth/google/callback"
+    }, 
+  "linkedinAuth" : {
+        "clientID"      : "75jjm2c4de8cxe",
+        "clientSecret"  : "7UTCh6GolHSrU0QK",
+        "callbackURL"   : "https://seev-adamtibballs.c9.io/auth/linkedin/callback"
+    }
+}
+

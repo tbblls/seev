@@ -1,0 +1,65 @@
+header{
+    text-align:left;
+    background-size: cover;    
+    color:white;
+    min-height:300px;
+    padding: 5px 35px;
+    margin:5px 10px 25px 10px;
+}
+
+h1{
+    font-size:75px;text-align:center;
+    font-family: 'Biryani', sans-serif;
+    margin:0px auto;
+}
+.SignIn{
+    text-align:center;
+    max-width:400px;
+    min-height:300px;
+    margin:10px auto;
+    background-color:rgba(0,0,0,0.4);
+    padding:15px;
+    
+}
+
+.SignIn li{
+    list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0; 
+}
+
+.SignIn input {
+      border:0;
+      padding: 10px;
+      font-size:18px;
+      margin:5px;
+      width:250px;
+      border-radius:4px;
+}
+    
+.SignIn button {
+      border:0;
+      padding: 10px;
+      font-size:18px;
+      margin:5px;
+      width:250px;
+      border-radius:7px;
+      
+}
+
+body {
+        text-align: center;
+        color: white;
+        font-family: helvetica;
+        background: rgb(0,0,55);
+    }
+.icon {
+    height:70px;
+    width:70px;
+    margin:10px 10px;
+}
+.altsign li{
+    list-style-type: none;
+    display: inline;
+}
