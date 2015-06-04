@@ -10,13 +10,15 @@ var express = require("express"),
     FacebookStrategy = require('passport-facebook').Strategy,
     GoogleStrategy =  require('passport-google-oauth').OAuth2Strategy,
     LinkedInStrategy = require('passport-linkedin').Strategy,
-    LocalStrategy = require('passport-local').Strategy;
+    LocalStrategy = require('passport-local').Strategy,
+    bcrypt = require('bcrypt'),
+    bodyParser = require("body-parser");
 
 app.set('views', path.join(__dirname,'views'));
 app.engine('html', require('hogan-express'));
 app.set('view engine','html');
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 
@@ -37,19 +39,23 @@ if(env==='development'){
         resave:true}));
 }
 
-var userSchema = mongoose.Schema({
-    username:String,
-    password:String,
-    fullnamne:String
-});
+
+var seevUser =  new mongoose.Schema({
+       profileID:String,
+        fullname:String,
+        password:String
+    });
+
+    var userModel = mongoose.model('seevUser', seevUser);
+
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 
 
-require('./auth/passportAuth.js')(passport, FacebookStrategy, GoogleStrategy, LinkedInStrategy, LocalStrategy, config, mongoose);
-require('./routes/routes.js')(express, app, passport);
+require('./auth/passportAuth.js')(passport, FacebookStrategy, GoogleStrategy, LinkedInStrategy, LocalStrategy, config, mongoose, bcrypt, userModel);
+require('./routes/routes.js')(express, app, passport, bcrypt, mongoose, userModel);
 
 var server = app.listen(process.env.PORT, function(){
   var host = server.address().address;

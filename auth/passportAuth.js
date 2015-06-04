@@ -1,11 +1,6 @@
-module.exports = function(passport, FacebookStrategy, GoogleStrategy, LinkedInStrategy, LocalStrategy, config, mongoose){
+module.exports = function(passport, FacebookStrategy, GoogleStrategy, LinkedInStrategy, LocalStrategy, config, mongoose, bcrypt, userModel){
 
-    var seevUser =  new mongoose.Schema({
-        profileID:String,
-        fullname:String
-    });
-
-    var userModel = mongoose.model('seevUser', seevUser);
+    
 
     passport.serializeUser(function(user,done){
         done(null, user.id);
@@ -131,28 +126,33 @@ module.exports = function(passport, FacebookStrategy, GoogleStrategy, LinkedInSt
     
     
 
-    passport.use(new LocalStrategy( function(username, displayName, password, done){
-           process.nextTick(function() {
+   /*passport.use(new LocalStrategy( function(email, password, done){
+         
+               console.log('local auth');
             // try to find the user based on their linked id
-            userModel.findOne({ 'id' : username }, 
-            function(err, user) {
+            userModel.findOne({ 'email' : email },  function(err, user) {
                   if (err) {
                     return done(err);
                   }
              
                   if (!user) {
+                      console.log('user not found');
                     return done(null, false);
                   }
-             
-                  if (user.password != password) {
-                    return done(null, false);
+                  
+                console.log('user  found');
+                    
+                  if (!bcrypt.compareSync(user.password, password)) {
+                    console.log('password doesnt match');
+                     return done(null, false, { message: 'Invalid password' });
                   }
-             
+                  console.log('return success');
                   return done(null, user);
             });
-        });
+    
 
-    }));
+    }));*/
+
 
 
 }

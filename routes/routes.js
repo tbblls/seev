@@ -1,4 +1,4 @@
-module.exports = function(express, app, passport){
+module.exports = function(express, app, passport, bcrypt, mongoose, userModel){
  
     var router = express.Router();
  
@@ -19,6 +19,11 @@ module.exports = function(express, app, passport){
         }
     }
     
+    router.get('/logout', function(request, response, next){
+        request.logout();
+        response.redirect('/');
+    });
+    
      router.get('/auth/facebook', passport.authenticate('facebook'));
      router.get('/auth/google', passport.authenticate('google',{ scope : ['profile', 'email'] }));
      router.get('/auth/linkedin', passport.authenticate('linkedin'));
@@ -36,12 +41,57 @@ module.exports = function(express, app, passport){
             failureRedirect:"/"
         }));
 
-    router.post('/auth/local/login', passport.authenticate('local', {
-        successRedirect: '/jobseeker',
-        failureRedirect: '/'
-      })
-    );
+    router.post('/auth/local/login', function(req, res, next) {
+      passport.authenticate('local-signup', function(err, user, info) {
+        if (err) { return next(err) }
+        if (!user) {
+          req.session.messages =  [info.message];
+          console.log(req.session.messages);
+          return res.redirect('/')
+        }
+        req.logIn(user, function(err) {
+          if (err) { return next(err); }
+          return res.redirect('/jobseeker');
+        });
+      })(req, res, next);
+    });
 
+
+    router.route('/auth/local/register')
+    .post(function(req, res){
+        console.log('register');
+            var name = req.body.displayName;
+            var email = req.body.email;
+            bcrypt.genSalt(10, function(err, salt) {
+                bcrypt.hash(req.body.password, salt, function(err, hash) {
+                    
+                    //Save user to db
+                   userModel.findOne({ 'email' : email }, function(err, user) {
+                    if(!user){
+                        var newSeevUser = new userModel({
+                            username:email,
+                            fullname:name,
+                            password:hash
+                        });
+    
+                        newSeevUser.save(function(err){
+                            
+                            console.log('user created');
+                            
+                        });
+                    }
+                    else{
+                           console.log('user already exists'); 
+                    }
+                     
+                 });
+                    
+                });
+            });
+            
+        
+        }
+    );
 
     app.use('/', router);
 }

@@ -8,14 +8,20 @@
 <body>
     
     <header><h1>SEEV</h1></header>
+    <div class="menu">
+        <a href="/logoutwhere">Sign out</a>
+    </div>
+    
     <div class="SignIn">
+       <form action="/auth/local/login" method="post">
+            <ul>
+                <li><h2>Sign in</h2></li>
+                <li><input name="email" type="text" placeholder="Email"></li>
+                <li><input name="password" type="password" placeholder="Password"></li>
+                <li><button name="login">LOG IN</button></li>
+            </ul>
+       </form>
        
-        <ul>
-            <li><h2>Sign in</h2></li>
-            <li><input name="email" type="text" placeholder="Email"></li>
-            <li><input name="password" type="password" placeholder="Password"></li>
-            <li><button name="login">LOG IN</button></li>
-        </ul>
         <hr />
         <p>Or connect using</p>
         <ul class="altsign">
@@ -30,19 +36,20 @@
             </li>
         </ul>
     </div>
-    
+    <!--
     <div class="SignIn">
         <form action="/auth/local/register" method="post">
             <ul>
                 <li><h2>Register</h2></li>
-                <li><input name="name" type="text" placeholder="Name" required></li>
+                <li><input name="displayName" type="text" placeholder="Name" required></li>
                 <li><input name="email" type="email" placeholder="Email" required></li>
                 <li><input name="password" type="password" placeholder="Password" required></li>
                 <li><button name="signup">Sign me up</button></li>
             </ul>
         </form>
     </div>
-    
+    --->
     <footer></footer>
+    
 </body>
 </html>

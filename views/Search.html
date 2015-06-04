@@ -1,13 +1,21 @@
 <!DOCTYPE html>
+  <style>
+ .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #f5f5f5;
+    }
+</style>
 <head>
-    <link href="../../dist/css/vendor/bootstrap.min.css" rel="stylesheet">
     <title>SeeV</title>
-    <link rel="stylesheet" href="../css/seev.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="sticky-footer.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-default">
+    <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -60,40 +68,57 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-    <div id="content" class="container">
-        <div class="col-xs-12 col-sm-4 col-md-4">
+   <div id="content" class="container">
+       <div id="Search" class="col-xs-12 col-sm-5 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body"> 
+                   <form>
+                        <input type="text" placeholder="search" class="form-control">
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <div class="collapsible filter">
+                        <p>Years Exp</p>
+                    </div>
+                    <div class="collapsible filter">
+                        <p>Qualifactions</p>
+                    </div>
+                    <div class="collapsible filter">
+                        <p>Skills</p>
+                    </div>
+                    <div class="collapsible filter">
+                        <p>Availability</p>
+                    </div>
+                    <div class="collapsible filter">
+                        <p>Education</p>
+                    </div>
+                    <div class="collapsible filter">
+                        <p>location</p>
+                    </div>
+                    <div class="collapsible filter">
+                        <p>Transportation</p>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    <div id="results" class="col-xs-12 col-sm-7 col-md-8">
+        <div id="results">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="http://cdn.flaticon.com/png/256/62652.png" class="img-thumbnail">
-                    <address>
-                        <h3>Chris Tibballs</h3>
-                        33 Little Whiskers Rd<br>
-                        Carwoola, NSW 2620<br>
-                        (02) 6238-2255
-                    </address>
+                    <p>Display Results</p>
                 </div>
-            </div>    
+            </div>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-7">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <ul>
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleInputFile">Upload SeeV</label>
-                                <input type="file" id="exampleInputFile">
-                                <p class="help-block"></p>
-                            </div>
-                        </form>
-                        <li><p>contact details</p></li>
-                        <li><p>Referees</p></li>
-                        <li><p>Skills</p></li>
-                        <li><p>Qualifactions</p></li>
-                        <li><p>Certifactions</p></li>
-                        <li><p>Other</p></li>
-                    </ul>
-                </div>
-            </div>    
+   </div>
+   <footer class="footer">
+       <div class="container">
+           <ul class="list-inline">
+               <li class="text-right"><p>By clicking continue I agree to Seev's user agreement</p></li>
+               <li class="text-right"><input type="checkbox" name="user agreement" value="user agreement"/></li>
+               <li class="text-right"><button class="btn btn-default" disabled="disabled">continue</button></li>
+           </ul>
         </div>
-    </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </body>
+</html>
