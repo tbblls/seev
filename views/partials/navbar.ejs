@@ -1,0 +1,76 @@
+<!-- views/partials/nav.ejs -->
+
+ <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">SeeV</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/notifactions"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#SignInModal">Sign in</a></li>
+            <li class="divider"></li>
+            <li><a href="/logout">Sign out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="modal fade" id="SignInModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        </div>
+        <div class="modal-body">
+          <div class="SignIn" id="SignIn">
+               <form action="/auth/local/login" method="post"  autocomplete="off">
+                    <ul>
+                        <li><h2>Sign in</h2></li>
+                        <li><input name="email" type="email" placeholder="Email" class="form-control"></li>
+                        <li><input name="password" type="password" placeholder="Password" class="form-control"></li>
+                        <li><button name="login" class="btn btn-default">LOG IN</button></li>
+                    </ul>
+               </form>
+               
+                <hr />
+                <p>Or connect using</p>
+                <ul class="altsign">
+                    <li>
+                        <a href="/auth/facebook"><img class="icon" name="facebook" src="../images/facebook.png"></a>
+                    </li>
+                    <li>
+                        <a href="/auth/google"><img class="icon" name="google" src="../images/google-plus.png"></a>
+                    </li>
+                    <li>
+                        <a href="/auth/linkedin"><img class="icon" name="linkedin" src="../images/linkedin.png"></a>
+                    </li>
+                </ul>
+            </div>
+                            
+         </div>
+      </div>
+    </div>
+</div>

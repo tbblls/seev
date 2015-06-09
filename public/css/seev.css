@@ -1,8 +1,8 @@
-header{
+/*header{
     text-align:left;
     background-size: cover;    
     color:white;
-    /*min-height:300px;*/
+  
     padding: 5px 35px;
     margin:5px 10px 25px 10px;
 }
@@ -11,14 +11,11 @@ h1{
     font-size:75px;text-align:center;
     font-family: 'Biryani', sans-serif;
     margin:0px auto;
-}
+}*/
 .SignIn{
     text-align:center;
     max-width:400px;
     min-height:300px;
-    margin:10px auto;
-    background-color:rgba(0,0,0,0.4);
-    padding:15px;
     
 }
 
@@ -28,7 +25,7 @@ h1{
     background-repeat:none;
     background-position:0; 
 }
-
+/*
 .SignIn input {
       border:0;
       padding: 10px;
@@ -47,19 +44,101 @@ h1{
       border-radius:7px;
       
 }
-
+*/
 body {
         text-align: center;
         color: white;
         font-family: helvetica;
-        background: rgb(0,0,55);
+        background-color: #730000;
     }
 .icon {
-    height:70px;
-    width:70px;
+    height:30px;
+    width:30px;
     margin:10px 10px;
 }
 .altsign li{
     list-style-type: none;
     display: inline;
+}
+
+.modal-dialog {
+    max-width:350px;
+}
+.modal-header {
+    padding-bottom: 30px;
+}
+.SignIn input {
+    margin-bottom: 10px;
+}
+ul, menu, dir {
+    padding-left:0px;
+}
+
+.editable a{
+  /*visibility:hidden;*/
+  float:right; 
+  padding:4px 6px;
+}
+.editable:hover {
+ background-color:#ECEDFC;
+}
+.editable:hover a {
+ visibility:visible;
+}
+.editForm{
+    display:none;
+    text-align:left;
+   /* padding:10px 20px;
+    margin:0;*/
+}
+.editForm li{
+    list-style-type: none;
+    display: block;
+}
+#Register {
+    margin: auto;
+    background-color:#CCCCCC;
+}
+#register input {
+    max-width:250px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+#facebook {
+    background: #3c66c4;
+	border:none;
+	outline:none;
+	margin: 10px 0 30px 0;
+}
+#facebook:hover {
+    background:#315997;
+}
+.intro_card {
+    background-color:  #00005C;
+}
+.intro_card h1 {
+    margin-top:0;
+    padding-top:30px;
+    margin-bottom:0;
+    padding-bottom:30px;
+}
+.aboutSeeV {
+    background-color:#730000;
+}
+.aboutSeeV h2 {
+    margin-top: 0;
+    padding-top: 40px;
+}
+.navbar { 
+  margin-bottom:0; 
+}
+#article {
+    margin: 0 auto;
+}
+.How_it_works {
+    max-width:360px;
+    margin: 0 auto;
+}
+#our_goal {
+    margin-bottom:40px;
 }

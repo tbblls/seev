@@ -1,8 +1,12 @@
-var User            = require('../models/user');
+var User             = require('../models/user');
+var Profile          = require('../models/profile');
+var shortid          = require('shortid');
+var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
+var LinkedInStrategy = require('passport-linkedin').Strategy;
+var LocalStrategy    = require('passport-local').Strategy;
 
-module.exports = function(passport, FacebookStrategy, GoogleStrategy, LinkedInStrategy, LocalStrategy, config, mongoose, userModel){
-
-    
+module.exports = function(passport, config){
 
     passport.serializeUser(function(user,done){
         done(null, user.id);
@@ -18,29 +22,35 @@ module.exports = function(passport, FacebookStrategy, GoogleStrategy, LinkedInSt
         clientID: config.fb.appId,
         clientSecret: config.fb.appSecret,
         callbackURL: config.fb.callbackURL,
-        profileFields:['id','displayName'],
-        passReqToCallback :true
+        passReqToCallback :true,
+        profileFields: ['id', 'displayName', 'emails']
     },
         function(req, token, refreshToken, profile, done){
             
              process.nextTick(function() {
               // check if the user is already logged in
                 if (!req.user) {
-                    userModel.findOne({'facebook.id':profile.id}, function(err, result){
+                    User.findOne({'facebook.id':profile.id}, function(err, result){
                         if(result){
                             done(null, result);
                         }
                         else{
                             var newUser = new User();
-                            
-                                newUser.facebook.token = token;
-                                newUser.facebook.id    = profile.id;
-                                newUser.facebook.name  = profile.displayName
-                            
+                            var seevId  = shortid.generate();
+                            newUser.facebook.token    = token;
+                            newUser.facebook.id       = profile.id;
+                            newUser.seevId            = seevId;
         
                             newUser.save(function(err){
                                 if (err){
-                                    throw err;}
+                                    throw err;
+                                }
+                                
+                                var email = profile.emails[0].value;
+                                var preferredName = profile.displayName;
+                                
+                                addProfile(seevId, email, preferredName);
+                                    
                                 done(null, newUser);
                             });
                         }
@@ -54,9 +64,7 @@ module.exports = function(passport, FacebookStrategy, GoogleStrategy, LinkedInSt
                     // update the current users facebook credentials
                     user.facebook.id    = profile.id;
                     user.facebook.token = token;
-                    user.facebook.name  = profile.displayName;
-           
-    
+ 
                     // save the user
                     user.save(function(err) {
                         if (err){
@@ -90,7 +98,7 @@ module.exports = function(passport, FacebookStrategy, GoogleStrategy, LinkedInSt
             // check if the user is already logged in
                 if (!req.user) {
                     // try to find the user based on their google id
-                    userModel.findOne({ 'google.id' : profile.id }, function(err, user) {
+                    User.findOne({ 'google.id' : profile.id }, function(err, user) {
                         if (err){
                             return done(err);
                         }
@@ -102,14 +110,19 @@ module.exports = function(passport, FacebookStrategy, GoogleStrategy, LinkedInSt
                             // if the user isnt in our database, create a new user
                             
                           var newUser = new User();
-                            
+                          var seevId =   shortid.generate();
                                 newUser.google.token = token;
                                 newUser.google.id    = profile.id;
-                                newUser.google.name  = profile.displayName
-
+                   
+                                newUser.seevId   = seevId;
+                                
                             newUser.save(function(err){
                                 if (err){
-                                    throw err;}
+                                    throw err;
+                                }
+                                
+                                addProfile(seevId,profile.emails[0].value,profile.displayName);
+                                
                                 done(null, newUser);
                             });
                         }
@@ -121,12 +134,13 @@ module.exports = function(passport, FacebookStrategy, GoogleStrategy, LinkedInSt
                             // update the current users google credentials
                             user.google.token = token;
                             user.google.id    = profile.id;
-                            user.google.name  = profile.displayName
+                       
 
                             // save the user
                             user.save(function(err) {
-                                if (err)
+                                if (err){
                                     throw err;
+                                }
                                 return done(null, user);
                             });
                 }
@@ -139,6 +153,7 @@ module.exports = function(passport, FacebookStrategy, GoogleStrategy, LinkedInSt
         consumerKey        : config.linkedinAuth.clientID,
         consumerSecret    : config.linkedinAuth.clientSecret,
         callbackURL     : config.linkedinAuth.callbackURL,
+        profileFields: ['id', 'first-name', 'last-name', 'email-address'],
         passReqToCallback :true
     },
     function(req, token, refreshToken, profile, done) {
@@ -149,7 +164,7 @@ module.exports = function(passport, FacebookStrategy, GoogleStrategy, LinkedInSt
                 // check if the user is already logged in
                 if (!req.user) {
                     // try to find the user based on their linked id
-                    userModel.findOne({ 'linkedin.id' : profile.id }, function(err, user) {
+                    User.findOne({ 'linkedin.id' : profile.id }, function(err, user) {
                         if (err){
                             return done(err);
                         }
@@ -161,27 +176,32 @@ module.exports = function(passport, FacebookStrategy, GoogleStrategy, LinkedInSt
                             // if the user isnt in our database, create a new user
                             
                             var newUser = new User();
-                            
+                            var seevId  = shortid.generate();
                                 newUser.linkedin.token = token;
                                 newUser.linkedin.id    = profile.id;
-                                newUser.linkedin.name  = profile.displayName
-                            
+            
+                                newUser.seevId   = seevId;
         
                             newUser.save(function(err){
                                 if (err){
                                     throw err;}
+                                    
+                                    console.log(profile);
+                                    
+                                    addProfile(seevId,profile.emails[0].value,profile.displayName);
+                                    
                                 done(null, newUser);
                             });
                         }
                     });
                 }else{
-                     // user already exists and is logged in, we have to link accounts
+             
                             var user            = req.user; // pull the user out of the session
             
                             // update the current users linkedin credentials
                             user.linkedin.token = token;
                             user.linkedin.id    = profile.id;
-                            user.linkedin.name  = profile.displayName
+                         
 
                             // save the user
                             user.save(function(err) {
@@ -223,28 +243,51 @@ module.exports = function(passport, FacebookStrategy, GoogleStrategy, LinkedInSt
                 return done(null, false, req.flash('message', 'That email is already taken.'));
             } else {
 
-                // if there is no user with that email
-                // create the user
-                var newUser            = new User();
-
-                // set the user's local credentials
-                newUser.local.email    = email;
-                newUser.local.password = newUser.generateHash(password);
-                newUser.local.name     = req.body.displayName;
-                // save the user
-                newUser.save(function(err) {
-                    if (err){
-                        throw err;
-                    }
-                    return done(null, newUser);
-                });
-            }
+                    // if there is no user with that email
+                    // create the user
+                    var newUser            = new User();
+                    var seevId =     shortid.generate();
+                    // set the user's local credentials
+                    newUser.seevId   = seevId;
+                    newUser.local.email    = email;
+                    newUser.local.password = newUser.generateHash(password);
+        
+                    // save the user
+                    newUser.save(function(err) {
+                        if (err){
+                            throw err;
+                        }
+                        
+                        
+                        addProfile(seevId,email,req.body.displayName);
+                       
+                        
+                       return done(null, newUser);
+                        
+                        
+                    });
+                }
 
         });    
 
         });
 
     }));
+
+   function addProfile(seevId, email, preferredname)
+   {
+
+        var newProfile               = new Profile();
+            newProfile.seevId        = seevId;
+            newProfile.email         = email;
+            newProfile.preferredname = preferredname;
+    
+            newProfile.save(function(err){
+                if(err){
+                    throw err;
+                }
+            });
+   }
 
 
    passport.use('local-login', new LocalStrategy({

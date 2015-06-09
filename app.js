@@ -7,17 +7,17 @@ var express = require("express"),
     ConnectMongo = require('connect-mongo')(session),
     mongoose     = require('mongoose').connect(config.dbURL),
     passport     = require('passport'),
-    FacebookStrategy = require('passport-facebook').Strategy,
-    GoogleStrategy   =  require('passport-google-oauth').OAuth2Strategy,
-    LinkedInStrategy = require('passport-linkedin').Strategy,
-    LocalStrategy    = require('passport-local').Strategy,
     bodyParser       = require("body-parser"),
-    flash            = require('connect-flash');
+    flash            = require('connect-flash'),
+    multer           = require('multer');
 
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine','ejs');
+
+app.use(multer({ dest: './uploads/'}));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 app.use(cookieParser());
 
@@ -39,13 +39,6 @@ if(env==='development'){
 }
 
 
-var seevUser =  new mongoose.Schema({
-       profileID:String,
-        fullname:String,
-        password:String
-    });
-
-    var userModel = mongoose.model('seevUser', seevUser);
 
 
 app.use(passport.initialize());
@@ -53,8 +46,8 @@ app.use(passport.session());
 app.use(flash());
 
 
-require('./auth/passportAuth.js')(passport, FacebookStrategy, GoogleStrategy, LinkedInStrategy, LocalStrategy, config, mongoose, userModel);
-require('./routes/routes.js')(express, app, passport, mongoose, userModel);
+require('./auth/passportAuth.js')(passport, config);
+require('./routes/routes.js')(express, app, passport);
 
 var server = app.listen(process.env.PORT, function(){
   var host = server.address().address;

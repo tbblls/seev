@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="../css/seev.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <% include ../partials/navbar %>
+  <% include ../partials/modalWait %>
+    <div id="content" class="container">
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <img src="http://cdn.flaticon.com/png/256/62652.png" class="img-thumbnail">
+                    <address>
+                        <h3  data-bind="text: preferredname">Adam</h3>
+                        33 Little Whiskers Rd<br>
+                        Carwoola, NSW 2620<br>
+                        <span  data-bind="text: phone" ></span>
+                        
+                    </address>
+                </div>
+            </div>    
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul>
+                
+                           
+                     
+                        <div id="contactDetailsDisplay" class="panel panel-default editable contactDetails">
+                          <a id="editContactDetails" href="#" class="edit editContactDetails">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          </a>
+                          <h3>Contact details</h3>
+                          <h4>Email:</h4>
+                          <p><%= profile.email %></p>
+                          <p>P: <span  data-bind="text: phone" ></span></p>
+                          <p>M: <span  data-bind="text: mobile" ></span></p>
+                        </div>
+                        <div id="contactDetails" class="editForm panel panel-default contactDetails row">
+                          <form id="contactDetailsForm">
+                            <h3>Contact details</h3>
+                             
+                     
+                            <label class="control-label col-sm-4">First name</label>
+                            <div class="col-sm-8">
+                                  <input type="text" class="form-control" id="fname" name="fname"  placeholder="First name" data-bind="value: firstname" >
+                            </div>
+                            <label class="control-label col-sm-4">Surname name</label>
+                            <div class="col-sm-8">
+                                  <input type="text" class="form-control" id="lname" name="lname"  placeholder="Surname name" data-bind="value: familyname" >
+                            </div>
+                            <label class="control-label col-sm-4">Preferred name</label>
+                            <div class="col-sm-8">
+                                  <input type="text" class="form-control" id="pname" name="pname" required placeholder="Preferred name" data-bind="value: preferredname" >
+                            </div>
+                            <label class="control-label col-sm-4">Email</label>
+                            <div class="col-sm-8">
+                                  <input type="email" class="form-control" id="email" name="email" required placeholder="Email" data-bind="value: email" >
+                            </div>
+                            <label class="control-label col-sm-4">Home phone</label>
+                            <div class="col-sm-8">
+                                  <input type="tel" class="form-control" id="hphone" name="hphone"  placeholder="Home phone" data-bind="value: phone" >
+                            </div>
+                            <label class="control-label col-sm-4">Mobile</label>
+                            <div class="col-sm-8">
+                                  <input type="tel" class="form-control" id="mphone" name="mphone"  placeholder="Mobile phone" data-bind="value: mobile" >
+                            </div>
+                            <label class="control-label col-sm-4">Address</label>
+                             <div class="col-sm-8">
+                                  <input type="text" class="form-control" id="address" name="address" placeholder="Address">
+                            </div>
+                            <button id="saveContactDetails" class="editContactDetails btn btn-default ">Save</button>
+                           
+                          </form>
+                        </div>
+                       <div class="panel panel-default editable">
+                          <a href="#" class="edit">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          </a>
+                          <h3>Referees</h3>
+                          <h4>Name:</h4>
+                          <p>Bob the builder</p>
+                        </div>
+                       <div class="panel panel-default editable">
+                          <a href="#" class="edit">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          </a>
+                          <h3>Career History</h3>
+                          <h4>Little nest Barton</h4>
+                            <ul>
+                              <li><p>6/2009-6/2012</p></li>
+                              <li><p></p></li>
+                              <li><p></p></li>
+                              <li><p></p></li>
+                              <li><p></p></li>
+                            </ul>
+                       </div>
+                       <div class="panel panel-default editable">
+                          <a href="#" class="edit">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          </a>
+                          <h3>Skills</h3>
+                          <h4>Skills</h4>
+                            <ul>
+                              <li><p>Communication</p></li>
+                              <li><p>Team work</p></li>
+                            </ul>
+                        </div>
+                        <div class="panel panel-default editable">
+                          <a href="#" class="edit">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          </a>
+                          <h3>Qualifactions</h3>
+                          <h4>Certificates:</h4>
+                          <p>Base SAS programming</p>
+                        </div>
+                       <div class="panel panel-default editable">
+                          <a href="#" class="edit">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          </a>
+                          <h3>Other</h3>
+                          <h4>Languages:</h4>
+                          <p>English</p>
+                          <h4>Citizenship:</h4>
+                          <p>Austalian</p>
+                          <h4>Drivers license:</h4>
+                          <h4>yes</h4>
+                          <h4>Availability:</h4>
+                          <p>05/06/2015</p>
+                        </div>
+                    </ul>
+                </div>
+            </div>    
+        </div>
+    </div>
+    <script>
+      $(document).ready(function(){
+        $('.editContactDetails').on('click', function(){
+            $('#contactDetailsDisplay').hide();
+            $('#contactDetails').show();
+        });
+        $("#contactDetailsForm").submit(function(e){
+                $('#WaitModal').modal('show'); 
+                e.preventDefault();
+            
+                $.post( "/jobseeker/contactDetails", $("#contactDetailsForm").serialize(), function(data) {
+           
+                    $('#contactDetailsDisplay').show();
+                    $('#contactDetails').hide();
+                    console.log(data);
+                })
+                .done(function() {})
+                .fail(function(xhr, textStatus, errorThrown) {
+        
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                    console.log(xhr);
+                })
+                .always(function() {
+                   $('#WaitModal').modal('hide'); 
+                });
+
+            });
+            $("saveContactDetails").click(function(){
+                $("#contactDetailsForm").submit();
+            });
+      
+            var profileModel = {};
+            
+            profileModel.firstname = ko.observable("<%= profile.firstname %>");
+            profileModel.familyname = ko.observable("<%= profile.familyname %>");
+            profileModel.preferredname = ko.observable("<%= profile.preferredname %>");
+            profileModel.phone = ko.observable("<%= profile.phone %>");
+            profileModel.mobile = ko.observable("<%= profile.mobile %>");
+            profileModel.email = ko.observable("<%= profile.email %>");
+            
+            ko.applyBindings(profileModel);
+         
+            
+            var uploadControl = $("#UploadSeeV");
+            $("#clearCV").on("click", function () {
+                uploadControl.replaceWith( uploadControl = uploadControl.clone( true ) );
+            });
+            
+            $('#uploadCV').on('click',function(){
+              
+              /*$('#uploadCVForm').submit();*/
+                $.post( "/jobseeker/uploadCV", $("#uploadCVForm").serialize(), function(data) {
+                    alert('upload successful');
+                })
+                .done(function() {})
+                .fail(function(xhr, textStatus, errorThrown) {
+        
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                    console.log(xhr);
+                })
+                .always(function() {
+                  
+                });
+            });
+            
+      });
+    </script>
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</body>
+</html>
