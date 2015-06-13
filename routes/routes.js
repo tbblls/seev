@@ -1,86 +1,33 @@
-var Profile          = require('../models/profile');
-var CV          = require('../models/cv');
+var profile          = require('../controllers/profile');
+var cv               = require('../controllers/cv');
 var bodyParser       = require('body-parser');
-var fs = require('fs');
+
+var urlencodedParser = bodyParser.urlencoded({ extended: true });
+var jsonParser = bodyParser.json();
 
 module.exports = function(express, app, passport){
  
     var router = express.Router();
  
+    function securePages(req, res, next){
+        if(req.isAuthenticated()){
+            next();
+        }else{
+            res.redirect('/');
+        }
+    }
+ 
     router.get('/', function (req, res, next) {
       res.render('common/index', { message: req.flash('message') });  
     });
 
-    router.get('/jobseeker', securePages, function (req, res, next) {
-      console.log(req.user.seevId);
-      //load profile for current user and return  
-      Profile.findOne({'seevId':req.user.seevId}, function(err, result){
-            if (err){
-                throw err;
-            }
-          res.render('jobseeker/Home', {title:'SeeV', profile:result})  
-      });
-      
-      
-    });
-    
-    var urlencodedParser = bodyParser.urlencoded({ extended: true });
+    router.get('/jobseeker', securePages, profile.get);
 
-    var jsonParser = bodyParser.json();
-     
-    router.route('/jobseeker/uploadCV', urlencodedParser)
-     .post(function(req, res){
-        console.log(req.body);
-        console.log(req.files);
-        
-        /* var cv = new CV();
-         var binary = fs.readFileSync(req.body.UploadSeeV);
-         
-         cv.seevId        = req.user.seevId;
-         cv.filename      = '';
-         cv.fileType      = '';
-         cv.file          = '';
-         
-         cv.save(function(err) {
-            if (err){
-                throw err;
-            }
-            console.log('cv saved to db.');
-            return res.send('Success');
-         });*/
-        return res.send('Success');
-     });
+    router.route('/jobseeker/uploadCV',jsonParser)
+     .post(cv.add);
 
-    
     router.route('/jobseeker/contactDetails', urlencodedParser)
-    .post(function(req,res){
-        console.log(req.body);
-        console.log(req.files);
-        Profile.findOne({'seevId':req.user.seevId}, function(err, result){
-            if (err){
-                throw err;
-            }  
-
-            var profile  = result;
-            
-            profile.firstname = req.body.fname;
-            profile.familyname = req.body.lname;
-            profile.phone = req.body.hphone;
-            profile.mobile = req.body.mphone;
-            profile.email = req.body.email;
-            profile.preferredname = req.body.pname;
-
-            profile.save(function(err) {
-                if (err){
-                    throw err;
-                }
-                console.log('Profile changes saved to db.');
-                return res.send('Success');
-            });
-
-        });
-  
-    });
+    .post(profile.update);
     
     router.get('/jobseeker/search', function (req, res, next) {
       res.render('jobseeker/Search', {title:'SeeV'})  
@@ -90,7 +37,6 @@ module.exports = function(express, app, passport){
       res.render('common/notifactions', {title:'SeeV'})  
     });
 
-    
     router.get('/employer', function (req, res, next) {
       res.render('employer/Home', {title:'SeeV'})  
     });
@@ -98,32 +44,20 @@ module.exports = function(express, app, passport){
     router.get('/employer/search', function (req, res, next) {
       res.render('emplorer/Search', {title:'SeeV'})  
     });
-    
-    
+
     router.get('/employer/shortlist', function (req, res, next) {
       res.render('employer/ShortList', {title:'SeeV'})  
     });
 
-    function securePages(req, res, next){
-        if(req.isAuthenticated()){
-            next();
-        }else{
-            res.redirect('/');
-        }
-    }
-    
     router.get('/logout', function(request, response, next){
         request.logout();
-        console.log('user signed out');
         response.redirect('/');
     });
     
     router.get('/securetest', securePages, function(request, response, next){
         response.render('/common/securetest', {title:'SeeV'});
     });
-    
-    
-    
+
      router.get('/auth/facebook', passport.authenticate('facebook',{ scope: 'email'}));
      router.get('/auth/facebook/callback', passport.authenticate('facebook', {
             successRedirect:'/jobseeker',

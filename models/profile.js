@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
-
+var CV       = require('../models/cv');
+var Address       = require('../models/address');
+var Schema = mongoose.Schema;
 
 // define the schema for our user model
-var profileSchema = mongoose.Schema({
+var profileSchema = Schema({
 
     seevId        : String,
     email         : String,
@@ -10,7 +12,9 @@ var profileSchema = mongoose.Schema({
     familyname    : String,
     preferredname : String,
     phone         : String,
-    mobile        : String
+    mobile        : String,
+    address       : { type: Schema.Types.ObjectId, ref: 'Address' },
+    cv            : { type: Schema.Types.ObjectId, ref: 'CV' }
  
 });
 

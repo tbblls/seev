@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var cvSchema = mongoose.Schema({
     seevId        : String,
     filename      : String,
-    fileType      : String,
+    filetype      : String,
     file          : Buffer
 
 });
