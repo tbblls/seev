@@ -25,29 +25,9 @@ h1{
     background-repeat:none;
     background-position:0; 
 }
-/*
-.SignIn input {
-      border:0;
-      padding: 10px;
-      font-size:18px;
-      margin:5px;
-      width:250px;
-      border-radius:4px;
-}
-    
-.SignIn button {
-      border:0;
-      padding: 10px;
-      font-size:18px;
-      margin:5px;
-      width:250px;
-      border-radius:7px;
-      
-}
-*/
+
 body {
         text-align: center;
-        color: white;
         font-family: helvetica;
         background-color: #730000;
     }
@@ -96,7 +76,9 @@ ul, menu, dir {
     display: block;
 }
 #Register {
-    margin: auto;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
     background-color:#CCCCCC;
 }
 #register input {
@@ -115,6 +97,7 @@ ul, menu, dir {
 }
 .intro_card {
     background-color:  #00005C;
+    color:white;
 }
 .intro_card h1 {
     margin-top:0;
@@ -124,13 +107,15 @@ ul, menu, dir {
 }
 .aboutSeeV {
     background-color:#730000;
+    color:white;
 }
 .aboutSeeV h2 {
     margin-top: 0;
     padding-top: 40px;
 }
 .navbar { 
-  margin-bottom:0; 
+  margin-bottom:0;
+  border-radius: 0px; 
 }
 #article {
     margin: 0 auto;
@@ -142,10 +127,27 @@ ul, menu, dir {
 #our_goal {
     margin-bottom:40px;
 }
-.navbar {
-  border-radius: 0px;
-}
 
 #progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }
 #bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }
 #percent { position:absolute; display:inline-block; top:3px; left:48%; }
+
+#skills {
+    display:inline;
+}
+
+#contactDetailsForm input{
+    margin-bottom:10px;
+}
+#refereeForm #newReferee input{
+     margin-bottom:10px;
+}
+#newSkill input {
+    margin-bottom:10px;
+}
+#newCareer input {
+   margin-bottom:10px; 
+}
+#newCareer button {
+    margin:10px;
+}

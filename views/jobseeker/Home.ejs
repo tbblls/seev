@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script> 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -30,7 +30,7 @@
                 </div>
             </div>    
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-7">
+        <div class="col-xs-12 col-sm-8 col-md-7">
             <div class="panel panel-default">
                 <div class="panel-body">
                   
@@ -53,102 +53,68 @@
                           <p>M: <span  data-bind="text: mobile" ></span></p>
                         </div>
                         <div id="contactDetails" class="editForm panel panel-default contactDetails row">
-                          <form id="contactDetailsForm">
-                            <h3>Contact details</h3>
-                             
-                           <div id="profile">
-                               <label class="control-label col-sm-4">First name</label>
-                              <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="fname" name="fname"  placeholder="First name" data-bind="value: firstname" >
-                              </div>
-                              <label class="control-label col-sm-4">Surname name</label>
-                              <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="lname" name="lname"  placeholder="Surname name" data-bind="value: familyname" >
-                              </div>
-                              <label class="control-label col-sm-4">Preferred name</label>
-                              <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="pname" name="pname" required placeholder="Preferred name" data-bind="value: preferredname" >
-                              </div>
-                              <label class="control-label col-sm-4">Email</label>
-                              <div class="col-sm-8">
-                                    <input type="email" class="form-control" id="email" name="email" required placeholder="Email" data-bind="value: email" >
-                              </div>
-                              <label class="control-label col-sm-4">Home phone</label>
-                              <div class="col-sm-8">
-                                    <input type="tel" class="form-control" id="hphone" name="hphone"  placeholder="Home phone" data-bind="value: phone" >
-                              </div>
-                              <label class="control-label col-sm-4">Mobile</label>
-                              <div class="col-sm-8">
-                                    <input type="tel" class="form-control" id="mphone" name="mphone"  placeholder="Mobile phone" data-bind="value: mobile" >
-                              </div>
-                           </div>
-                           <div id="address">
-                             <label class="control-label col-sm-4">Address line 1</label>
-                             <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="address1" name="address1" placeholder="Address line 1" data-bind="value: addressline1" >
-                            </div>
-                            <label class="control-label col-sm-4">Address line 2</label>
-                             <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="address2" name="address2" placeholder="Address line 2" data-bind="value: addressline2">
-                            </div>
-                            <label class="control-label col-sm-4">State</label>
-                             <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="state" name="state" placeholder="State" data-bind="value: state">
-                            </div>
-                            <label class="control-label col-sm-4">Postcode</label>
-                             <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Postcode" data-bind="value: postcode">
-                            </div>
-                            <label class="control-label col-sm-4">Country</label>
-                             <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="country" name="country" placeholder="Country" data-bind="value: country">
-                            </div>
-                           </div>
-                            
-                            <button id="saveContactDetails" class="editContactDetails btn btn-default ">Save</button>
-                           
-                          </form>
+                           <% include forms/contactdetails %>
                         </div>
-                       <div class="panel panel-default editable">
+                       <div id="refereeDisplay"  class="panel panel-default editable">
                           <a href="#" class="edit">
                             <span class="glyphicon glyphicon-pencil"></span>
                           </a>
                           <h3>Referees</h3>
                           <h4>Name:</h4>
                           <p>Bob the builder</p>
+                       </div>
+                       <div id="referee" class="editForm panel panel-default referee row">
+                           <% include forms/referees %>
                         </div>
-                       <div class="panel panel-default editable">
+                       <div  id="careerDisplay" class="panel panel-default editable">
                           <a href="#" class="edit">
                             <span class="glyphicon glyphicon-pencil"></span>
                           </a>
                           <h3>Career History</h3>
                           <h4>Little nest Barton</h4>
                             <ul>
-                              <li><p>6/2009-6/2012</p></li>
-                              <li><p></p></li>
-                              <li><p></p></li>
-                              <li><p></p></li>
-                              <li><p></p></li>
+                                <input placeholder="Enter place of employment here" class="form-control"></input>
+                              <li>from<input type="date" class="form-control"></input></li>
+                              <li>to<input type="date" class="form-control"></input></li>
                             </ul>
                        </div>
-                       <div class="panel panel-default editable">
+                        <div id="career" class="editForm panel panel-default career row">
+                           <% include forms/careers %>
+                        </div>
+                       <div id="skillDisplay" class="panel panel-default editable">
                           <a href="#" class="edit">
                             <span class="glyphicon glyphicon-pencil"></span>
                           </a>
                           <h3>Skills</h3>
                           <h4>Skills</h4>
                             <ul>
-                              <li><p>Communication</p></li>
-                              <li><p>Team work</p></li>
+                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
+                              <li id="skills"><button class="btn btn-default">Team work</button> </li>
+                              <li id="skills"><button class="btn btn-default">Supervision</button> </li>
+                              <li id="skills"><button class="btn btn-default">Reliability</button> </li>
+                              <li id="skills"><button class="btn btn-default">Programming</button> </li>
+                              <li id="skills"><button class="btn btn-default">Diplomatic</button> </li>
+                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
+                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
+                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
+                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
+                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
+                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
                             </ul>
                         </div>
-                        <div class="panel panel-default editable">
+                        <div id="skill" class="editForm panel panel-default skill row">
+                           <% include forms/skills %>
+                        </div>
+                        <div  id="qualificationDisplay" class="panel panel-default editable">
                           <a href="#" class="edit">
                             <span class="glyphicon glyphicon-pencil"></span>
                           </a>
                           <h3>Qualifactions</h3>
                           <h4>Certificates:</h4>
                           <p>Base SAS programming</p>
+                        </div>
+                        <div id="qualification" class="editForm panel panel-default qualification row">
+                           <% include forms/qualifications %>
                         </div>
                        <div class="panel panel-default editable">
                           <a href="#" class="edit">
@@ -161,8 +127,10 @@
                           <p>Austalian</p>
                           <h4>Drivers license:</h4>
                           <h4>yes</h4>
+                          <Form>
                           <h4>Availability:</h4>
-                          <p>05/06/2015</p>
+                          <input type="date"></input>
+                          </form>
                         </div>
             
                 </div>
@@ -171,52 +139,45 @@
     </div>
     <script>
       $(document).ready(function(){
-        $('.editContactDetails').on('click', function(){
-            $('#contactDetailsDisplay').hide();
-            $('#contactDetails').show();
-        });
-        $("#contactDetailsForm").submit(function(e){
-                $('#WaitModal').modal('show'); 
-                e.preventDefault();
 
-                $.post( "/jobseeker/contactDetails", $("#contactDetailsForm").serialize(), function(data) {
-           
-                    $('#contactDetailsDisplay').show();
-                    $('#contactDetails').hide();
-                    console.log(data);
-                })
-                .done(function() {})
-                .fail(function(xhr, textStatus, errorThrown) {
-        
-                    console.log(textStatus);
-                    console.log(errorThrown);
-                    console.log(xhr);
-                })
-                .always(function() {
-                  $('#WaitModal').modal('hide'); 
-                });
+            var profileModel = {
+            
+                firstname     : ko.observable(),
+                familyname    : ko.observable(),
+                preferredname : ko.observable(),
+                phone         : ko.observable(),
+                mobile        : ko.observable(),
+                email         : ko.observable(),
+    
+                addressline1  : ko.observable(),
+                addressline2  : ko.observable(),
+                state         : ko.observable(),
+                postcode      : ko.observable(),
+                country       : ko.observable(),
 
-            });
-            $("saveContactDetails").click(function(){
-                $("#contactDetailsForm").submit();
-            });
-      
-            var profileModel = {};
-            profileModel.firstname = ko.observable("<%= profile.firstname %>");
-            profileModel.familyname = ko.observable("<%= profile.familyname %>");
-            profileModel.preferredname = ko.observable("<%= profile.preferredname %>");
-            profileModel.phone = ko.observable("<%= profile.phone %>");
-            profileModel.mobile = ko.observable("<%= profile.mobile %>");
-            profileModel.email = ko.observable("<%= profile.email %>");
-
-            profileModel.addressline1 = ko.observable("<%= profile.address.addressline1 %>");
-            profileModel.addressline2 = ko.observable("<%= profile.address.addressline2 %>");
-            profileModel.state        = ko.observable("<%= profile.address.state %>");
-            profileModel.postcode     = ko.observable("<%= profile.address.postcode %>");
-            profileModel.country      = ko.observable("<%= profile.address.country %>");
+                referees      : ko.observableArray()
+                
+                
+            };   
 
             ko.applyBindings(profileModel);
-           
+
+            profileModel.firstname        ("<%= profile.firstname %>");
+            profileModel.familyname       ("<%= profile.familyname %>");
+            profileModel.preferredname    ("<%= profile.preferredname %>");
+            profileModel.phone            ("<%= profile.phone %>");
+            profileModel.mobile           ("<%= profile.mobile %>");
+            profileModel.email            ("<%= profile.email %>");
+            
+            <% if(profile.address!==undefined){ %>
+                profileModel.addressline1 ("<%= profile.address.addressline1 %>");
+                profileModel.addressline2 ("<%= profile.address.addressline2 %>");
+                profileModel.state        ("<%= profile.address.state %>");
+                profileModel.postcode     ("<%= profile.address.postcode %>");
+                profileModel.country      ("<%= profile.address.country %>");
+            <% } %>
+            
+      
             
             var uploadControl = $("#file");
             $("#clearCV").on("click", function () {
@@ -232,11 +193,39 @@
                 $('#WaitModal').modal('hide'); 
             }); 
 
+           $('.cancel').on('click', function(){
+                var id = $(this).parents('.editForm').attr('id');
+                $('#' + id).hide();     
+                $('#' + id + 'Display').show();         
+           });
             
-            
-           
-            
-            
+           $('.editable').on('click', function(){
+               var id = $(this).attr('id');
+               var editId = id.replace("Display","");
+                $('#' + id).hide();
+                $('#' + editId).show();
+           });
+        
+            $(".save").on('click', function(){
+                var id = $(this).parents('.editForm').attr('id');
+                
+                $("#" + id + "Form").submit(function(e){
+                     var id = $(this).attr('id');
+                     var formType = id.replace("Form","");
+                     
+                     $('#WaitModal').modal('show'); 
+                     e.preventDefault();
+    
+                     $.post( "/jobseeker/" + formType, $("#" + id).serialize(), function(data) {
+                            $('#'+formType+'Display').show();
+                            $('#'+formType).hide();
+                            
+                     })
+                     .always(function() {
+                            $('#WaitModal').modal('hide'); 
+                     });
+                });
+            });    
             
       });
     </script>

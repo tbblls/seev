@@ -16,6 +16,8 @@ exports.update = function(req, res){
             profile.email = req.body.email;
             profile.preferredname = req.body.pname;
 
+//TODO populate address from result...
+
             var newAddress = new Address();
             newAddress.addressline1 = req.body.address1;
             newAddress.addressline2 = req.body.address2;
@@ -42,6 +44,7 @@ exports.update = function(req, res){
 exports.get =  function(req, res){
      Profile.findOne({'seevId':req.user.seevId})
       .populate('address')
+      .populate('referees')
       .exec(function(err, result){
             if (err){
                 throw err;

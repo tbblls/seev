@@ -8,20 +8,21 @@
       <script src="//code.jquery.com/jquery-1.10.2.js"></script>
       <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
           <link rel="stylesheet" href="../css/seev.css">
-  
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <% include ../partials/navbar %>
 
+    <% include ../partials/navbar %>
+    <div id="content" class="container">
     <article class="main ">
     <!-- show any messages that come back with authentication -->
     <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
-    <div id="content"> 
-    <div class="intro_card">
+ 
+    <div class="intro_card row">
             <h1>SEEV</h1>
-            <div class="SignIn panel panel-default" id="Register">
+            <div class="SignIn panel panel-default col-sm-5 col-md-5" id="Register">
         
                 <form action="/auth/local/signup" method="post"   autocomplete="off">
                     <ul>
@@ -31,7 +32,7 @@
                         <li id="register"><input name="password" class="form-control" type="password" placeholder="Password" required></li>
                         <li id="register"><button name="signup" class="btn btn-default">Sign me up</button></li>
                                 <hr />
-                <p>Or Register using</p>
+                <h3>Or</h3>
                                    <ul class="altsign">
                                     <li>
                                    <a href="/auth/facebook"><img class="icon" name="facebook" src="../images/facebook.png">signup with facebook</a>
@@ -46,9 +47,7 @@
                     </ul>
                 </form>
             </div>
-            <h1>Learn more</h1>
           </div>
-          <div class="container">
         <section class="aboutSeeV">
              <div id="our_goal">
                  <h2>Our Goal</h2>
@@ -74,7 +73,6 @@
           </div>
         </section> 
         </div>
-    </div>
  </article>
 
 

@@ -1,5 +1,9 @@
 var profile          = require('../controllers/profile');
+var referee          = require('../controllers/referee');
 var cv               = require('../controllers/cv');
+var skill            = require('../controllers/skill');
+var career           = require('../controllers/career');
+var qualification   = require('../controllers/qualification');
 var bodyParser       = require('body-parser');
 
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
@@ -23,11 +27,23 @@ module.exports = function(express, app, passport){
 
     router.get('/jobseeker', securePages, profile.get);
 
-    router.route('/jobseeker/uploadCV',jsonParser)
+    router.route('/jobseeker/uploadCV', jsonParser)
      .post(cv.add);
 
     router.route('/jobseeker/contactDetails', urlencodedParser)
     .post(profile.update);
+    
+    router.route('/jobseeker/referee', urlencodedParser)
+    .post(referee.add);
+    
+    router.route('/jobseeker/skill', urlencodedParser)
+    .post(skill.add);
+    
+    router.route('/jobseeker/career', urlencodedParser)
+    .post(career.add);
+    
+    router.route('/jobseeker/qualification', urlencodedParser)
+    .post(qualification.add);
     
     router.get('/jobseeker/search', function (req, res, next) {
       res.render('jobseeker/Search', {title:'SeeV'})  
