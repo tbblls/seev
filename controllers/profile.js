@@ -54,3 +54,14 @@ exports.get =  function(req, res){
             res.render('jobseeker/Home', {title:'SeeV', profile:result})  
       });
 };
+exports.get2 =  function(req, res){
+     Profile.findOne({'seevId':req.user.seevId})
+      .exec(function(err, result){
+            if (err){
+                throw err;
+            }
+            
+            console.log('get2:' + result);
+            return res.send(result); 
+      });
+};

@@ -26,6 +26,12 @@ module.exports = function(express, app, passport){
     });
 
     router.get('/jobseeker', securePages, profile.get);
+    
+    router.get('/jobseeker2', securePages, function(req, res, next){
+        res.render('jobseeker/Home2');
+    });
+
+    router.get('/profile', securePages, profile.get2);
 
     router.route('/jobseeker/uploadCV', jsonParser)
      .post(cv.add);

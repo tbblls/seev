@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <% include ../partials/common/head %>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+ <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
+  <header class="mdl-layout__header mdl-layout__header--waterfall">
+    <!-- Top row, always visible -->
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">SeeV</span>
+      <div class="mdl-layout-spacer"></div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon"
+               for="waterfall-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+          <input class="mdl-textfield__input" type="text" name="sample"
+                 id="waterfall-exp" />
+        </div>
+      </div>
+    </div>
+    <!-- Bottom row, not visible on scroll -->
+   <!-- <div class="mdl-layout__header-row">
+      <div class="mdl-layout-spacer"></div>
+       Navigation 
+      <nav class="waterfall-demo-header-nav mdl-navigation">
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+      </nav>
+    </div>-->
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">SeeV</span>
+    <nav class="mdl-navigation">
+      
+    </nav>
+  </div>
+  <main class="mdl-layout__content" >
+    <div class="page-content" id="seev-app">
+    </div>
+  </main>
+</div>
+
+     <script type="text/x-handlebars">
+       
+                {{outlet}}
+       
+    </script>  
+
+    <script type='text/x-handlebars' data-template-name='profile'>
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--3-col">
+                
+                <div class="mdl-card mdl-shadow--2dp seev-card">
+                  
+                  <div class="mdl-card__supporting-text">
+                   <img src="http://cdn.flaticon.com/png/256/62652.png" class="img-thumbnail">
+                  </div>
+                
+                </div>
+                <ul class="seev-nav">
+                      <li>{{#link-to 'details'  classNames="mdl"}}My Home{{/link-to}}</li>
+                      <li>{{#link-to 'account'  classNames="mdl"}}Account{{/link-to}}</li>
+                      <li>{{#link-to 'careers'  classNames="mdl"}}Careers{{/link-to}}</li>
+                      <li>{{#link-to 'qualifications'  classNames="mdl"}}Qualifications{{/link-to}}</li>
+                      <li>{{#link-to 'referees' classNames="mdl"}}Referees{{/link-to}}</li>
+                      <li>{{#link-to 'skills'   classNames="mdl"}}Skills{{/link-to}}</li>
+                      <li>{{#link-to 'other'  classNames="mdl"}}Other{{/link-to}}</li>
+                </ul>
+      
+
+             </div>
+             
+             {{outlet}}
+             </div>
+    </script>
+    
+    <script type='text/x-handlebars' data-template-name='details'>
+
+    
+         <div class="mdl-cell mdl-cell--3-col">
+             
+                 <div class="mdl-card mdl-shadow--2dp  seev-card-wide">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Personal details</h2>
+                  </div>
+                 
+                  <div class="mdl-card__actions mdl-card--border">
+                      {{#link-to 'account' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Update{{/link-to}}
+                  </div>
+                
+                </div>
+             
+              <div class="mdl-card mdl-shadow--2dp  seev-card-wide">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Referees</h2>
+                  </div>
+                 
+                  <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                      {{#link-to 'referees' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Update{{/link-to}}
+                    </a>
+                  </div>
+                
+                </div>
+              </div>
+            <div class="mdl-cell mdl-cell--3-col">
+              <div class="mdl-card mdl-shadow--2dp  seev-card-wide">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Careers</h2>
+                  </div>
+                 
+                  <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                      {{#link-to 'careers' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Update{{/link-to}}
+                    </a>
+                  </div>
+                
+                </div>
+                
+           
+                 <div class="mdl-card mdl-shadow--2dp  seev-card-wide">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Skills</h2>
+                  </div>
+                 
+                  <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                      {{#link-to 'skills' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Update{{/link-to}}
+                    </a>
+                  </div>
+                
+                </div>
+                 </div>
+            <div class="mdl-cell mdl-cell--3-col">
+                 <div class="mdl-card mdl-shadow--2dp  seev-card-wide">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Qualifications</h2>
+                  </div>
+                 
+                  <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                      {{#link-to 'qualifications' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Update{{/link-to}}
+                    </a>
+                  </div>
+                
+                </div>
+                
+                 <div class="mdl-card mdl-shadow--2dp  seev-card-wide">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Other</h2>
+                  </div>
+                 
+                  <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                      {{#link-to 'other' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Update{{/link-to}}
+                    </a>
+                  </div>
+                
+                </div>
+             
+   </div>
+     
+    
+             
+    </script>
+    
+    <script type='text/x-handlebars' data-template-name='account'>
+     
+             <h3>Account</h3>
+    </script>
+    
+    <script type='text/x-handlebars' data-template-name='referees'>
+  
+             <h3>Referees</h3>
+    </script>
+    <script type='text/x-handlebars' data-template-name='careers'>
+    
+             <h3>Careers</h3>
+    </script>
+    <script type='text/x-handlebars' data-template-name='skills'>
+   
+             <h3>Skills</h3>
+    </script>
+    <script type='text/x-handlebars' data-template-name='qualifications'>
+    
+             <h3>Qualifications</h3>
+    </script>
+    <script type='text/x-handlebars' data-template-name='other'>
+    
+             <h3>Other</h3>
+    </script>
+</body>
+</html>
+

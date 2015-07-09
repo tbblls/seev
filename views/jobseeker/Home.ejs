@@ -31,8 +31,7 @@
             </div>    
         </div>
         <div class="col-xs-12 col-sm-8 col-md-7">
-            <div class="panel panel-default">
-                <div class="panel-body">
+          
                   
                       <div class="panel panel-default">
                         <form id="uploadCVForm" name="formCV" method="post" enctype="multipart/form-data" action="/jobseeker/uploadCV">
@@ -133,8 +132,7 @@
                           </form>
                         </div>
             
-                </div>
-            </div>    
+             
         </div>
     </div>
     <script>
@@ -199,14 +197,15 @@
                 $('#' + id + 'Display').show();         
            });
             
-           $('.editable').on('click', function(){
+           $('.editable').on('click', function(e){
+                e.preventDefault();
                var id = $(this).attr('id');
                var editId = id.replace("Display","");
                 $('#' + id).hide();
                 $('#' + editId).show();
            });
         
-            $(".save").on('click', function(){
+            $(".save").on('click', function(e){
                 var id = $(this).parents('.editForm').attr('id');
                 
                 $("#" + id + "Form").submit(function(e){
