@@ -1,17 +1,25 @@
 
+.mdl-layout__container {
+    position: static;
+    max-width: 1200px;
+    margin: 0px auto;
+}
+
  .seev-card.mdl-card {
-    max-width: 300px;
-    margin: 20px;
+
+    width:100%;
+   
     
   }
  
  .seev-card-wide.mdl-card {
-    max-width: 412px;
-    margin: 20px 0px;
+    width: 100%;
+    margin-bottom: 5px;
+
   }
   .seev-card-wide > .mdl-card__title {
     color: #000;
-    height: 176px;
+    /*height: 176px;*/
     /*background: url('../assets/demos/welcome_card.jpg') center / cover;*/
   }
   .seev-card-wide > .mdl-card__menu {
@@ -23,3 +31,50 @@
      text-decoration: none;
      white-space: nowrap;
   }
+  
+  .seev-cards {
+     border-top: 3px solid; 
+  }
+  .seev-card-details{
+     border-color: #3F51B5;
+  }
+
+  .seev-card-skills{
+     border-color: #F44336;
+  }  
+  
+  .seev-card-referees{
+     border-color: #4CAF50;
+  }
+  
+  .seev-card-qualifications{
+     border-color: #FFC107;
+  }
+  
+  .seev-card-careers{
+     border-color: #9C27B0;
+  }
+  
+  .seev-card-availability{
+     border-color: #00BCD4;
+  }
+  
+  .seev-small-card-title{
+     font-weight:bold;   
+     
+  }
+
+    @media screen and (max-width: 839px) {
+        .seev-profile-img{
+            width:30%;
+        }
+     
+    }
+    
+    @media screen and (max-width: 500px) {
+        .seev-profile-img{
+            width:50%;
+        }
+     
+    }
+    

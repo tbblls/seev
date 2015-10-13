@@ -1,0 +1,74 @@
+<form action="#" id="contactDetailsForm" class="grid-form">
+    <fieldset>
+        <legend>Details</legend>
+        <div data-row-span="2">
+            <div data-field-span="1">
+                <label for="name">First Name</label>
+                {{input value=model.firstname id="firstname" }}
+            </div>
+            <div data-field-span="1">
+                <label for="name">Last Name</label>
+                {{input value=model.familyname id="lname" }}
+            </div>
+
+        </div>
+        <div data-row-span="2">
+            <div data-field-span="1">
+                <label for="name">Preferred Name</label>
+                {{input value=model.preferredname id="preferredname" }}
+            </div>
+            <div data-field-span="1">
+                <label for="email">Email</label>
+                {{input value=model.email id="email" }}
+            </div>
+        </div>
+        <div data-row-span="2">
+
+            <div data-field-span="1">
+                <label for="email">Home phone</label>
+                {{input value=model.phone id="phone" }}
+            </div>
+            <div data-field-span="1">
+                <label for="email">Mobile</label>
+                {{input value=model.mobile id="mobile" }}
+            </div>
+        </div>
+    </fieldset>
+    <br/>
+    <fieldset>
+        <legend>Address</legend>
+        <div data-row-span="1">
+            <div data-field-span="1">
+                <label for="name">Address line 1</label>
+                {{input value=model.address.addressline1 id="addressline1" }}
+            </div>
+        </div>
+        <div data-row-span="1">
+            <div data-field-span="1">
+                <label for="name">Address line 2</label>
+                {{input value=model.address.addressline2 id="addressline2" }}
+            </div>
+        </div>
+        <div data-row-span="3">
+            <div data-field-span="1">
+                <label for="name">State</label>
+                {{input value=model.address.state id="state" }}
+            </div>
+            <div data-field-span="1">
+                <label for="name">Postcode</label>
+                {{input value=model.address.postcode id="postcode" }}
+            </div>
+            <div data-field-span="1">
+                <label for="name">Country</label>
+                {{input value=model.address.country id="country" }}
+            </div>
+        </div>
+    </fieldset>
+
+
+    <button {{action "update"}} class="mdl-button mdl-js-button mdl-button--primary">Save</button>
+    {{#link-to 'jobseeker.details' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Cancel{{/link-to}}
+
+
+
+</form>

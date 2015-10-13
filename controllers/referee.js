@@ -6,18 +6,21 @@ var Referee = mongoose.model('Referee');
 exports.add = function(req,res){
     var referee = new Referee();
     
-    referee.seevId = req.user.seevId;;
-    referee.name   = req.body.refereeName;
-    referee.position = req.body.refereePosition;
-    referee.company = req.body.refereePhone;
-    referee.mobile = req.body.refereeMobile;
-    referee.email = req.body.refereeEmail;
+    console.log(req.body.referee);
+    
+    referee.seevId      = req.user.seevId;
+    referee.name        = req.body.referee.name;
+    referee.position    = req.body.referee.position;
+    referee.company     = req.body.referee.company;
+    referee.mobile      = req.body.referee.mobile;
+    referee.phone       = req.body.referee.phone;
+    referee.email       = req.body.referee.email;
     
     referee.save(function(err,data){
         if(err){
             throw err;
         }
-        
+        var savedReferee = data;
         Profile.findOne({'seevId':req.user.seevId}, function(err, result){
                  if (err){
                     throw err;
@@ -28,7 +31,7 @@ exports.add = function(req,res){
                     if (err){
                         throw err;
                     }
-                    return res.send('Success');
+                    return res.send(savedReferee);
                  });
             });
 
@@ -36,4 +39,53 @@ exports.add = function(req,res){
     
 };
 
+exports.update = function(req,res){
 
+     Referee.findOne({'_id':req.params.id}, function(err, result){
+         if (err){
+            throw err;
+         }
+         var referee = result;
+        console.log(req.body.referee);
+    
+        referee.seevId      = req.user.seevId;
+        referee.name        = req.body.referee.name;
+        referee.position    = req.body.referee.position;
+        referee.company     = req.body.referee.company;
+        referee.mobile      = req.body.referee.mobile;
+        referee.phone       = req.body.referee.phone;
+        referee.email       = req.body.referee.email;
+         
+         referee.save(function(err, data) {
+            if (err){
+                throw err;
+            }
+            return res.send(referee);
+        });
+         
+    });
+    
+};
+
+exports.get = function(req,res){
+
+    Referee.findOne({'_id':req.params.id}, function(err, result){
+         if (err){
+            throw err;
+         }
+         return res.send(result);
+    });
+
+};
+
+exports.remove = function(req,res){
+
+    Referee.remove({'_id':req.params.id}, function(err, result){
+         if (err){
+            throw err;
+         }
+        
+         return res.send("Referee removed successfully");
+    });
+
+};

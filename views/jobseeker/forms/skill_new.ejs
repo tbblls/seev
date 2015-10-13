@@ -1,0 +1,23 @@
+<form id="skillForm" class="grid-form">
+    <fieldset>
+        <legend>New Skill</legend>
+        <div data-row-span="1">
+            <div data-field-span="1">
+                <label for="name">Name</label>
+                {{input id="name" }}
+            </div>
+
+        </div>
+        <div data-row-span="1">
+            <div data-field-span="1">
+                <label for="category">Category</label>
+                {{input id="category" }}
+            </div>
+        </div>
+    </fieldset>
+
+
+    <button {{action "add"}} class="mdl-button mdl-js-button mdl-button--primary">Save</button>
+    {{#link-to 'skills' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Cancel{{/link-to}}
+
+</form>

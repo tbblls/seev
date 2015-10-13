@@ -1,38 +1,47 @@
-<form id="qualificationForm">
-    
-     
-       <div id="qualificationList">
-           <h3>Qualifications</h3>
-           <div>
-               <button id="addQualification" type="button" class="btn btn-default">Add</button>
-               <button  type="button" class="btn btn-default cancel">Cancel</button>
-           </div>
-           <ul>
-               <li>Qualification</li>
-           </ul>
-       </div>
-     
-       <div id="newQualification">
-           <h3>New Qualification</h3>
-          <label class="control-label col-sm-4">Name</label>
-          <div class="col-sm-8">
-                <input type="text" class="form-control" id="qualificationName" name="qualificationName"  placeholder="Qualification Name" >
-          </div>
-         <label class="control-label col-sm-4">Category</label>
-          <div class="col-sm-8">
-                <input type="text" class="form-control" id="qualificationCategory" name="qualificationCategory"  placeholder="Qualification Category" >
-          </div>
-        
-         <label class="control-label col-sm-4">Date Received</label>
-          <div class="col-sm-8">
-                <input type="date" class="form-control" id="qualificationDatereceived" name="qualificationDatereceived"  placeholder="Qualification Received" >
-          </div>
-        
-        
-          <button id="saveQualification" class="save editQualification btn btn-default">Save</button>
-          <button type="button" class="btn btn-default cancel">Cancel</button>
-       </div>
+<form id="qualificationsForm">
+  <h3>Qualifications</h3>
   
-    
-   
-  </form>
+  <div class="mdl-grid">
+       <div class="mdl-cell mdl-cell--12-col">
+           <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+             <thead>
+               <tr>
+                 <th>Name</th>
+                 <th>Category</th>
+              
+                 <th></th>
+               </tr>
+             </thead>
+             <tbody>
+              {{#each model.qualifications as |qualification|}}
+                <tr>
+                  <td>
+                    {{#link-to 'qualifications.edit' qualification }}
+                       {{qualification.name}}
+                    {{/link-to}}
+                  </td>
+                  <td>{{qualification.category}}</td>
+              
+                  <td>
+           
+                  <button  {{action "remove" qualification}} ><i   class="material-icons">delete</i></button>
+                 
+                  </td>
+                </tr>
+              {{else}}
+                <tr>
+                  <td colspan="3">No qualifications have been added yet</td>
+                </tr>
+              {{/each}}
+             </tbody>
+           </table>
+       </div>
+  </div>
+  <div class="mdl-grid">
+     <div class="mdl-cell mdl-cell--12-col">
+       {{#link-to 'qualifications.new' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Add{{/link-to}}
+       {{#link-to 'jobseeker.details' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Previous{{/link-to}}
+     </div>
+  </div>
+
+</form>

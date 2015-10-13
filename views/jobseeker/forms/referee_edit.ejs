@@ -1,0 +1,46 @@
+<form id="refereeForm"  class="grid-form">
+    
+
+       <fieldset>
+        <legend>Edit Referee</legend>
+        <div data-row-span="2">
+            <div data-field-span="1">
+                <label for="refereeName">Name</label>
+                {{input value=model.name id="refereeName"   }}
+            </div>
+            <div data-field-span="1">
+                <label for="refereePosition">Position</label>
+                {{input value=model.position  id="refereePosition"   }}
+            </div>
+        </div>
+        <div data-row-span="1">
+            <div data-field-span="1">
+                <label for="refereeCompany">Company</label>
+                {{input value=model.company  id="refereeCompany"   }}
+            </div>
+        </div>
+        <div data-row-span="2">
+            <div data-field-span="1">
+                <label for="refereePhone">Phone</label>
+                {{input value=model.phone type="tel" id="refereePhone"   }}
+            </div>
+            <div data-field-span="1">
+                <label for="refereeMobile">Mobile</label>
+                {{input value=model.mobile type="tel" id="refereeMobile"    }}
+            </div>
+        </div>
+        <div data-row-span="1">
+            <div data-field-span="1">
+                <label for="refereeEmail">Email</label>
+                {{input value=model.email  id="refereeEmail" type="email"   }}
+            </div>
+        </div>
+      </fieldset>
+
+      <button  {{action "update"}} class="mdl-button mdl-js-button mdl-button--primary">Save</button>
+      {{#link-to 'referees' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Cancel{{/link-to}}
+
+  
+    
+   
+  </form>

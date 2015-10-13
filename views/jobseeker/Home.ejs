@@ -1,234 +1,283 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="../css/seev.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script> 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <title>Home</title>
+    <% include ../partials/common/head %>
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <% include ../partials/navbar %>
-  <% include ../partials/modalWait %>
-    <div id="content" class="container">
-        <div class="col-xs-12 col-sm-4 col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <img src="http://cdn.flaticon.com/png/256/62652.png" class="img-thumbnail">
-                    <address>
-                        <h3  data-bind="text: preferredname">Adam</h3>
-                        33 Little Whiskers Rd<br>
-                        Carwoola, NSW 2620<br>
-                        <span  data-bind="text: phone" ></span>
-                        
-                    </address>
-                </div>
-            </div>    
-        </div>
-        <div class="col-xs-12 col-sm-8 col-md-7">
-          
-                  
-                      <div class="panel panel-default">
-                        <form id="uploadCVForm" name="formCV" method="post" enctype="multipart/form-data" action="/jobseeker/uploadCV">
-                          <input type="file" class="form-control" name="fileCV" id="file">
-                          <button id="uploadCV" class="btn btn-default">Submit</button>
-                          <button id="clearCV" class="btn btn-default">Clear</button>
-                        </form> 
-                      </div>   
-                     
-                        <div id="contactDetailsDisplay" class="panel panel-default editable contactDetails">
-                          <a id="editContactDetails" href="#" class="edit editContactDetails">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </a>
-                          <h3>Contact details</h3>
-                          <h4>Email:</h4>
-                          <p><%= profile.email %></p>
-                          <p>P: <span  data-bind="text: phone" ></span></p>
-                          <p>M: <span  data-bind="text: mobile" ></span></p>
-                        </div>
-                        <div id="contactDetails" class="editForm panel panel-default contactDetails row">
-                           <% include forms/contactdetails %>
-                        </div>
-                       <div id="refereeDisplay"  class="panel panel-default editable">
-                          <a href="#" class="edit">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </a>
-                          <h3>Referees</h3>
-                          <h4>Name:</h4>
-                          <p>Bob the builder</p>
-                       </div>
-                       <div id="referee" class="editForm panel panel-default referee row">
-                           <% include forms/referees %>
-                        </div>
-                       <div  id="careerDisplay" class="panel panel-default editable">
-                          <a href="#" class="edit">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </a>
-                          <h3>Career History</h3>
-                          <h4>Little nest Barton</h4>
-                            <ul>
-                                <input placeholder="Enter place of employment here" class="form-control"></input>
-                              <li>from<input type="date" class="form-control"></input></li>
-                              <li>to<input type="date" class="form-control"></input></li>
-                            </ul>
-                       </div>
-                        <div id="career" class="editForm panel panel-default career row">
-                           <% include forms/careers %>
-                        </div>
-                       <div id="skillDisplay" class="panel panel-default editable">
-                          <a href="#" class="edit">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </a>
-                          <h3>Skills</h3>
-                          <h4>Skills</h4>
-                            <ul>
-                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
-                              <li id="skills"><button class="btn btn-default">Team work</button> </li>
-                              <li id="skills"><button class="btn btn-default">Supervision</button> </li>
-                              <li id="skills"><button class="btn btn-default">Reliability</button> </li>
-                              <li id="skills"><button class="btn btn-default">Programming</button> </li>
-                              <li id="skills"><button class="btn btn-default">Diplomatic</button> </li>
-                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
-                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
-                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
-                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
-                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
-                              <li id="skills"><button class="btn btn-default">Communication</button> </li>
-                            </ul>
-                        </div>
-                        <div id="skill" class="editForm panel panel-default skill row">
-                           <% include forms/skills %>
-                        </div>
-                        <div  id="qualificationDisplay" class="panel panel-default editable">
-                          <a href="#" class="edit">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </a>
-                          <h3>Qualifactions</h3>
-                          <h4>Certificates:</h4>
-                          <p>Base SAS programming</p>
-                        </div>
-                        <div id="qualification" class="editForm panel panel-default qualification row">
-                           <% include forms/qualifications %>
-                        </div>
-                       <div class="panel panel-default editable">
-                          <a href="#" class="edit">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </a>
-                          <h3>Other</h3>
-                          <h4>Languages:</h4>
-                          <p>English</p>
-                          <h4>Citizenship:</h4>
-                          <p>Austalian</p>
-                          <h4>Drivers license:</h4>
-                          <h4>yes</h4>
-                          <Form>
-                          <h4>Availability:</h4>
-                          <input type="date"></input>
-                          </form>
-                        </div>
-            
-             
-        </div>
+ <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">SeeV</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+       
+      </nav>
     </div>
-    <script>
-      $(document).ready(function(){
-
-            var profileModel = {
-            
-                firstname     : ko.observable(),
-                familyname    : ko.observable(),
-                preferredname : ko.observable(),
-                phone         : ko.observable(),
-                mobile        : ko.observable(),
-                email         : ko.observable(),
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">SeeV</span>
+    <nav class="mdl-navigation">
     
-                addressline1  : ko.observable(),
-                addressline2  : ko.observable(),
-                state         : ko.observable(),
-                postcode      : ko.observable(),
-                country       : ko.observable(),
-
-                referees      : ko.observableArray()
-                
-                
-            };   
-
-            ko.applyBindings(profileModel);
-
-            profileModel.firstname        ("<%= profile.firstname %>");
-            profileModel.familyname       ("<%= profile.familyname %>");
-            profileModel.preferredname    ("<%= profile.preferredname %>");
-            profileModel.phone            ("<%= profile.phone %>");
-            profileModel.mobile           ("<%= profile.mobile %>");
-            profileModel.email            ("<%= profile.email %>");
-            
-            <% if(profile.address!==undefined){ %>
-                profileModel.addressline1 ("<%= profile.address.addressline1 %>");
-                profileModel.addressline2 ("<%= profile.address.addressline2 %>");
-                profileModel.state        ("<%= profile.address.state %>");
-                profileModel.postcode     ("<%= profile.address.postcode %>");
-                profileModel.country      ("<%= profile.address.country %>");
-            <% } %>
-            
-      
-            
-            var uploadControl = $("#file");
-            $("#clearCV").on("click", function () {
-                uploadControl.replaceWith( uploadControl = uploadControl.clone( true ) );
-            });
-            
-            $('#uploadCV').on('click', function(){
-                $('#WaitModal').modal('show'); 
-            });
-
-            $('#uploadCVForm').ajaxForm(function() { 
-                console.log('success');
-                $('#WaitModal').modal('hide'); 
-            }); 
-
-           $('.cancel').on('click', function(){
-                var id = $(this).parents('.editForm').attr('id');
-                $('#' + id).hide();     
-                $('#' + id + 'Display').show();         
-           });
-            
-           $('.editable').on('click', function(e){
-                e.preventDefault();
-               var id = $(this).attr('id');
-               var editId = id.replace("Display","");
-                $('#' + id).hide();
-                $('#' + editId).show();
-           });
-        
-            $(".save").on('click', function(e){
-                var id = $(this).parents('.editForm').attr('id');
-                
-                $("#" + id + "Form").submit(function(e){
-                     var id = $(this).attr('id');
-                     var formType = id.replace("Form","");
-                     
-                     $('#WaitModal').modal('show'); 
-                     e.preventDefault();
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
     
-                     $.post( "/jobseeker/" + formType, $("#" + id).serialize(), function(data) {
-                            $('#'+formType+'Display').show();
-                            $('#'+formType).hide();
-                            
-                     })
-                     .always(function() {
-                            $('#WaitModal').modal('hide'); 
-                     });
-                });
-            });    
+    <div class="page-content" id="seev-app">
+    </div>
+  </main>
+</div>
+
+     <script type="text/x-handlebars">
+       
+                {{outlet}}
+       
+    </script>  
+
+    <script type='text/x-handlebars' data-template-name='jobseeker'>
+    
+      <div class="mdl-grid">
+             <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+                
+                <div class="mdl-card mdl-shadow--2dp seev-card">
+                  
+                  <div class="mdl-card__supporting-text">
+                      {{#link-to 'jobseeker.details'   classNames="mdl"}}<img src="http://cdn.flaticon.com/png/256/62652.png" class="seev-profile-img">{{/link-to}}
+                  </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                      {{#link-to 'jobseeker.details' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Home{{/link-to}}
+                  </div>
+                </div>
+
             
-      });
+             </div>
+             
+             {{outlet}}
+             
+             
+      </div>
     </script>
- 
+    
+    <script type='text/x-handlebars' data-template-name='jobseeker/details'>
 
+    
+         <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet">
+             
+                 <div class="mdl-card mdl-shadow--2dp  seev-card-wide seev-card-details seev-cards">
+                  
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Personal details</h2>
+                  </div>
+                  <div class="mdl-card__supporting-text">
+                      <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet seev-small-card-title">Name:</div><div class="mdl-cell mdl-cell--8-col  mdl-cell--5-col-tablet">{{fullname}}</div>
+                        <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet seev-small-card-title">Email:</div><div class="mdl-cell mdl-cell--8-col  mdl-cell--5-col-tablet">{{model.email}}</div>
+                        <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet seev-small-card-title">Mobile:</div><div class="mdl-cell mdl-cell--8-col  mdl-cell--5-col-tablet">{{model.mobile}}</div>
+                        <div class="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet seev-small-card-title">Address:</div><div class="mdl-cell mdl-cell--8-col  mdl-cell--5-col-tablet">{{{address}}}</div>
+                      </div>
+                  </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                      {{#link-to 'profiles.edit' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Update{{/link-to}}
+                  </div>
+                
+                </div>
+             
+              <div class="mdl-card mdl-shadow--2dp  seev-card-wide seev-card-referees seev-cards">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Referees</h2>
+                  </div>
+                 <div class="mdl-card__supporting-text">
+                      <div class="mdl-grid">
+                        {{#each model.referees 3 as |referee|}}
+                            <div class="mdl-cell mdl-cell--12-col seev-small-card-title">
+                              {{#link-to 'referees.edit' referee }}
+                                 {{referee.name}}
+                              {{/link-to}}
+                            </div>
+                        {{/each}}
+                      </div>
+                  </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                    
+                      {{#link-to 'referees' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Update{{/link-to}}
+                   
+                  </div>
+                
+                </div>
+            
+              <div class="mdl-card mdl-shadow--2dp  seev-card-wide seev-card-careers seev-cards">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Careers</h2>
+                  </div>
+                 <div class="mdl-card__supporting-text">
+                      <div class="mdl-grid">
+                        {{#each model.careers 3 as |career|}}
+                            <div class="mdl-cell mdl-cell--12-col seev-small-card-title">
+                              {{#link-to 'careers.edit' career }}
+                                 {{career.role}}
+                              {{/link-to}}
+                            </div>
+                        {{/each}}
+                      </div>
+                  </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                      {{#link-to 'careers' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Update{{/link-to}}
+                  </div>
+                
+                </div>
+         </div>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet">        
+           
+                 <div class="mdl-card mdl-shadow--2dp  seev-card-wide seev-card-skills seev-cards">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Skills</h2>
+                  </div>
+                 <div class="mdl-card__supporting-text">
+                      <div class="mdl-grid">
+                        {{#each model.skills 3 as |skill|}}
+                            <div class="mdl-cell mdl-cell--12-col seev-small-card-title">
+                              {{#link-to 'skills.edit' skill }}
+                                 {{skill.name}}
+                              {{/link-to}}
+                            </div>
+                        {{/each}}
+                      </div>
+                  </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                      {{#link-to 'skills' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Update{{/link-to}}
+                  </div>
+                
+                </div>
+                
+                 <div class="mdl-card mdl-shadow--2dp  seev-card-wide seev-card-qualifications seev-cards">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Qualifications</h2>
+                  </div>
+                 <div class="mdl-card__supporting-text">
+                      <div class="mdl-grid">
+                        {{#each model.qualifications 3 as |qualification|}}
+                            <div class="mdl-cell mdl-cell--12-col seev-small-card-title">
+                              {{#link-to 'qualifications.edit' skill }}
+                                 {{qualification.name}}
+                              {{/link-to}}
+                            </div>
+                        {{/each}}
+                      </div>
+                  </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                      {{#link-to 'qualifications' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Update{{/link-to}}
+                  </div>
+                
+                </div>
+                
+                 <div class="mdl-card mdl-shadow--2dp  seev-card-wide seev-card-availability seev-cards">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Availability</h2>
+                  </div>
+                 
+                  <div class="mdl-card__actions mdl-card--border">
+               
+                      {{#link-to 'jobseeker.details' classNames="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"}}Update{{/link-to}}
+                  
+                  </div>
+                
+                </div>
+             
+   </div>
+     
+    
+             
+    </script>
+    
+
+    
+    <script type='text/x-handlebars' data-template-name='profiles/edit'>
+       <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+                <% include forms/profile %>
+      </div>
+    </script>
+    
+    <script type='text/x-handlebars' data-template-name='referees'>
+     <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+             <% include forms/referees %>
+             {{outlet}}
+     </div>
+    </script>
+    
+    <script type='text/x-handlebars' data-template-name='referees/new'>
+     <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+             <% include forms/referee_new %>
+     </div>
+    </script>
+   
+    <script type='text/x-handlebars' data-template-name='referees/edit'>
+     <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+             <% include forms/referee_edit %>
+     </div>
+    </script>
+    
+    <script type='text/x-handlebars' data-template-name='careers'>
+     <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+         <% include forms/careers %>
+     </div>
+    </script>
+    
+     <script type='text/x-handlebars' data-template-name='careers/new'>
+     <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+         <% include forms/career_new %>
+     </div>
+    </script>
+     <script type='text/x-handlebars' data-template-name='careers/edit'>
+     <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+         <% include forms/career_edit %>
+     </div>
+    </script>
+    
+    
+    <script type='text/x-handlebars' data-template-name='skills'>
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+            <% include forms/skills %>
+        </div>
+    </script>
+    <script type='text/x-handlebars' data-template-name='skills/new'>
+         <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+             <% include forms/skill_new %>
+         </div>
+    </script>
+    <script type='text/x-handlebars' data-template-name='skills/edit'>
+         <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+             <% include forms/skill_edit %>
+         </div>
+    </script>
+    
+    <script type='text/x-handlebars' data-template-name='qualifications'>
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+            <% include forms/qualifications %>
+        </div>
+    </script>
+    <script type='text/x-handlebars' data-template-name='qualifications/new'>
+         <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+             <% include forms/qualification_new %>
+         </div>
+    </script>
+    <script type='text/x-handlebars' data-template-name='qualifications/edit'>
+         <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+             <% include forms/qualification_edit %>
+         </div>
+    </script>
+    
+   <!-- <script type='text/x-handlebars' data-template-name='availability'>-->
+    
+   <!--          <h3>Availability</h3>-->
+   <!-- </script>-->
+    
+   
+    
 </body>
 </html>
+

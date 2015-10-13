@@ -5,7 +5,7 @@ var qualificationSchema = mongoose.Schema({
     seevId        : String,
     category      : String,
     name          : String,
-    datereceived  : Date
+    received      : Date
 });
 
 // create the model for users and expose it to our app

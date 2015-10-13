@@ -3,65 +3,73 @@ var Profile = mongoose.model('Profile');
 var Address = mongoose.model('Address');
 
 exports.update = function(req, res){
-     Profile.findOne({'seevId':req.user.seevId}, function(err, result){
+     Profile.findOne({'seevId':req.user.seevId})
+     .populate('address')
+     .exec(function(err, result){
             if (err){
                 throw err;
             }  
+            
 
             var profile  = result;
-            profile.firstname = req.body.fname;
-            profile.familyname = req.body.lname;
-            profile.phone = req.body.hphone;
-            profile.mobile = req.body.mphone;
-            profile.email = req.body.email;
-            profile.preferredname = req.body.pname;
+            profile.firstname = req.body.profile.firstname;
+            profile.familyname = req.body.profile.familyname;
+            profile.phone = req.body.profile.phone;
+            profile.mobile = req.body.profile.mobile;
+            profile.email = req.body.profile.email;
+            profile.preferredname = req.body.profile.preferredname;
 
-//TODO populate address from result...
+            var profileAddress;
 
-            var newAddress = new Address();
-            newAddress.addressline1 = req.body.address1;
-            newAddress.addressline2 = req.body.address2;
-            newAddress.state = req.body.state;
-            newAddress.postcode = req.body.postcode;
-            newAddress.country = req.body.country;
-            newAddress.save(function(err, data) {
+            if(profile.address){
+                profileAddress = profile.address;
+            }else{
+                profileAddress = new Address();
+            }
+            
+            console.log(profileAddress);
+            console.log(req.body.profile.address);
+            
+            profileAddress.addressline1 = req.body.profile.address.addressline1;
+            profileAddress.addressline2 = req.body.profile.address.addressline2;
+            profileAddress.state = req.body.profile.address.state;
+            profileAddress.postcode = req.body.profile.address.postcode;
+            profileAddress.country = req.body.profile.address.country;
+            profileAddress.save(function(err, data) {
+                if (err){
+                    throw err;
+                }
+                
+                profile.address = data._id;   
+                profile.save(function(err) {
                     if (err){
                         throw err;
-                    }
-                    
-                    profile.address = data._id;   
-                    profile.save(function(err) {
-                        if (err){
-                            throw err;
-                        } 
-                        console.log('Profile changes saved to db.');
-                        return res.send('Success');
-                    });
+                    } 
+                    console.log('Profile changes saved to db.');
+                    return res.send('Success');
+                });
             });
+
+           
     })
 };
+
 
 exports.get =  function(req, res){
      Profile.findOne({'seevId':req.user.seevId})
       .populate('address')
       .populate('referees')
+      .populate('careers')
+      .populate('skills')
+      .populate('qualifications')
       .exec(function(err, result){
             if (err){
                 throw err;
             }
-            
-            console.log(result);
-            res.render('jobseeker/Home', {title:'SeeV', profile:result})  
-      });
-};
-exports.get2 =  function(req, res){
-     Profile.findOne({'seevId':req.user.seevId})
-      .exec(function(err, result){
-            if (err){
-                throw err;
+            if(!result.address){
+                result.address = new Address();
             }
-            
-            console.log('get2:' + result);
+            console.log('get:' + result);
             return res.send(result); 
       });
 };

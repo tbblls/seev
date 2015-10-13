@@ -46,8 +46,16 @@ app.use(passport.session());
 app.use(flash());
 
 
-require('./auth/passportAuth.js')(passport, config);
-require('./routes/routes.js')(express, app, passport);
+
+
+//SeeV view routes
+require('./routes/routes.js')(express, app);
+
+//SeeV authentication routes
+require('./routes/auth-routes.js')(express, app, passport);
+
+//SeeV API routes
+require('./routes/api-routes.js')(express, app);
 
 var server = app.listen(process.env.PORT, function(){
   var host = server.address().address;
