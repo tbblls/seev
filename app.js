@@ -1,15 +1,15 @@
-var express = require("express"),
-    app     = express(),
-    path    = require('path'),
+var express      = require("express"),
+    app          = express(),
+    path         = require('path'),
     cookieParser = require('cookie-parser'),
     session      = require('express-session'),
     config       = require('./config/config.js'),
     ConnectMongo = require('connect-mongo')(session),
     mongoose     = require('mongoose').connect(config.dbURL),
     passport     = require('passport'),
-    bodyParser       = require("body-parser"),
-    flash            = require('connect-flash'),
-    multer           = require('multer');
+    bodyParser   = require("body-parser"),
+    flash        = require('connect-flash'),
+    multer       = require('multer');
 
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine','ejs');
@@ -57,11 +57,9 @@ require('./routes/auth-routes.js')(express, app, passport);
 //SeeV API routes
 require('./routes/api-routes.js')(express, app);
 
-var server = app.listen(process.env.PORT, function(){
+var server = app.listen(5000, function(){
   var host = server.address().address;
   var port = server.address().port;
 
   console.log('Example app listening at http://%s:%s', host, port);
 });
-
-
